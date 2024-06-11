@@ -15,6 +15,9 @@ def main():
     kktn_img = pg.image.load("fig/3.png")
     kktn_img = pg.transform.flip(kktn_img, True, False)
     bg_imgf = pg.transform.flip(bg_img, True, False)
+    kktn_rct = kktn_img.get_rect()
+    kktn_rct.center = (300, 200)
+    
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
@@ -24,8 +27,18 @@ def main():
         screen.blit(bg_img, [x + 3200, 0] )
         screen.blit(bg_imgf, [x + 4800, 0])
 
-        kktn_rct = kktn_img.get_rect()
-        kktn_rct.center = (300, 200)
+        key_list = pg.key.get_pressed()
+        if key_list[pg.K_UP]:
+            kktn_rct.move_ip((0, -1))
+        elif key_list[pg.K_DOWN]:
+            kktn_rct.move_ip((0, +1))
+        elif key_list[pg.K_RIGHT]:
+            kktn_rct.move_ip((+1, 0))
+        elif key_list[pg.K_LEFT]:
+            kktn_rct.move_ip((-1, 0))
+        
+
+        
         screen.blit(kktn_img, kktn_rct)
         pg.display.update()
         tmr += 1     
