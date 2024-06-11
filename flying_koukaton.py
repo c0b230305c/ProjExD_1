@@ -17,6 +17,8 @@ def main():
     bg_imgf = pg.transform.flip(bg_img, True, False)
     kktn_rct = kktn_img.get_rect()
     kktn_rct.center = (300, 200)
+    x1 = 0
+    y1 = 0
     
     while True:
         for event in pg.event.get():
@@ -29,13 +31,18 @@ def main():
 
         key_list = pg.key.get_pressed()
         if key_list[pg.K_UP]:
-            kktn_rct.move_ip((0, -1))
+            y1 = -1
         elif key_list[pg.K_DOWN]:
-            kktn_rct.move_ip((0, +1))
+            y1 = 1
+            
         elif key_list[pg.K_RIGHT]:
-            kktn_rct.move_ip((+1, 0))
+            x1 = 2
         elif key_list[pg.K_LEFT]:
-            kktn_rct.move_ip((-1, 0))
+            x1 = -1
+        else:
+            x1 = -1
+            y1 = 0
+        kktn_rct.move_ip((x1, y1))
         
 
         
